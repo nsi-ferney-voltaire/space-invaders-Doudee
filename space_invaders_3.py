@@ -1,5 +1,6 @@
 import pygame # importation de la librairie pygame
 import sys # pour fermer correctement l'application
+import space
 
 # lancement des modules inclus dans pygame
 pygame.init() 
