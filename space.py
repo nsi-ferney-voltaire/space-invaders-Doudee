@@ -1,4 +1,5 @@
 import pygame  # necessaire pour charger les images et les sons
+import random
 
 
 class Joueur() : # classe pour créer le vaisseau du joueur
@@ -42,7 +43,7 @@ class Balle():
         
     def bouger(self):
         if self.etat == "tiree":
-            self.hauteur -= 10
+            self.hauteur -= 15
             if self.hauteur < 0:
                 self.depart = self.tireur.position
                 self.hauteur = 500
@@ -50,12 +51,29 @@ class Balle():
         if self.etat == "chargee":
             self.depart = self.tireur.position
             
-class ennemies():
+    def toucher(self,ennemis):
+        if self.hauteur == ennemis.hauteur and self.depart == ennemis.depart:
+            return True
+        return None
+            
+class ennemis():
     
-    def __init__(self, nb_ennemies):
-        import random
-        self.depart = [randint(0,800)]
-        self.hauteur = 0
+    nbEnnemis = random.randint(2,10)
+    
+    def __init__(self):        
+            self.depart = random.randint(0,800)
+            self.type = random.randint(1,2)
+            self.hauteur = 0
+            self.image = pygame.image.load(f"invader{self.type}.png")
+            self.vitesse = self.type * 1.25
+        self.hitbox = self.hauteur
+            
+    def avancer(self):
+        self.hauteur += self.vitesse
+        
+    
+        
+            
     
             
             
@@ -63,9 +81,4 @@ class ennemies():
 
         
          
-        
-        
-        
-        
-        
         
